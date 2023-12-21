@@ -1,0 +1,33 @@
+<div class="sideBar">
+    <div class="logo">
+        <img src="/images/logo.png" height="48" width="48" alt="logo" />
+        <h2>CSV Viewer</h2>
+    </div>
+    <div class="listItemDiv">
+        <div class="mr">
+            <div id="homeItem" class="listItem active">
+                <a class="navLink" href="/">
+                    <span class="title">Import a CSV</span>
+                </a>
+            </div>
+        </div>
+        <div class="filesTitle">
+            <span class="uploadedFiles">Uploaded Files</span>
+        </div>
+        <div id="fileItemsDiv" class="mr">
+            <% if(files){ %>
+                <% for(file of files){ %>
+                    <div class="listItem" id="list-<%= file.id %>">
+                        <span>
+                            <a class="navLink" href="/viewFile?id=<%= file.id %>">
+                                <p class="title">
+                                    <%= file.originalname %>
+                                </p>
+                            </a>
+                        </span>
+                    </div>
+                    <% } %>
+                        <% } %>
+        </div>
+    </div>
+</div>

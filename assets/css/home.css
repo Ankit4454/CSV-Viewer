@@ -1,0 +1,274 @@
+#csvForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.drop-area {
+    border: 2px dashed #2185D5;
+    padding: 1rem;
+    border-radius: 1rem;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+}
+
+.drop-area.active{
+    background-color: rgb(197, 229, 240);
+}
+
+.fileUpload{
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+
+.instructionsUpper {
+    color: #303841;
+    font-size: 2rem;
+    display: block;
+}
+
+.instructionsUpper.active{
+    display: none;
+}
+
+.instructionsLower {
+    color: #303841;
+    display: block;
+}
+
+.instructionsLower.active{
+    display: none;
+}
+
+.dragOver{
+    color: #303841;
+    font-size: 2rem;
+    display: none;
+}
+
+.dragOver.active{
+    display: block;
+}
+
+.cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.8em 1.5em 0.8em 1.2em;
+    margin-top: 1rem;
+    color: white;
+    background: #3A4750;
+    background: linear-gradient(0deg, #3A4750 0%, #303841 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #3A4750;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+    cursor: pointer;
+}
+  
+.cssbuttons-io-button svg {
+    margin-right: 8px;
+}
+  
+.cssbuttons-io-button:hover {
+    background: #2185D5;
+    box-shadow: 0 0.5em 1.5em -0.5em #2185D5;
+}
+  
+.cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #303841;
+}
+
+#filesDiv h3{
+    color: #303841;
+}
+
+#file-name-display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fileNameDiv{
+    color: #2185D5;
+}
+
+#deleteBtnDiv{
+    display: flex;
+    align-items: center;
+}
+
+#deleteBtn{
+    cursor: pointer;
+    color: red;
+}
+
+#filesDiv{
+    width: 100%;
+}
+
+#fileContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#filesTable{
+    width: 100%;
+    border-collapse: collapse; 
+    text-align: left;
+    color: #303841;
+}
+
+.trow{
+    border-bottom: 1px solid lightgray;
+}
+
+.previewBtn{
+    text-decoration: none;
+    color: #2185D5;
+}
+
+th, td{
+    padding: 0.5rem 0;
+    color: #3A4750;
+}
+
+th{
+    cursor: pointer;
+}
+
+.filterCol{
+    margin-left: 2px;
+}
+
+#srNoTh{
+    width: 5%;
+}
+
+#sizeTh{
+    width: 15%;
+}
+
+#dateTh{
+    width: 15%;
+}
+
+.thCol{
+    display: flex;
+    align-items: center;
+}
+
+.deleteFileBtn{
+    color: red;
+}
+
+#spinnerDiv{
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#spinnerDiv.active{
+    display: flex;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    border: 4px solid #0000;
+    border-radius: 50%;
+    border-right-color: #2185D5;
+    animation: spinner-a4dj62 1s infinite linear;
+}
+   
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 2px;
+    border: inherit;
+    border-radius: 50%;
+    animation: spinner-a4dj62 2s infinite;
+}
+   
+.spinner::after {
+    margin: 8px;
+    animation-duration: 3s;
+}
+   
+@keyframes spinner-a4dj62 {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.tableHeadDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-container {
+    width: 220px;
+    position: relative;
+}
+  
+.searchIcon {
+    position: absolute;
+    right: 10px;
+    top: calc(50% + 5px);
+    transform: translateY(calc(-50% - 5px));
+}
+  
+.searchInput {
+    width: 100%;
+    height: 40px;
+    padding: 1rem;
+    transition: .2s linear;
+    border: 2.5px solid #303841;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border-radius: 1.2rem;
+}
+  
+.searchInput:focus {
+    outline: none;
+    border: 0.5px solid #303841;
+    box-shadow: -5px -5px 0px #3A4750;
+}
+  
+.input-container:hover > .searchIcon {
+    animation: anim 1s linear infinite;
+}
+  
+@keyframes anim {
+    0%,
+    100% {
+      transform: translateY(calc(-50% - 5px)) scale(1);
+    }
+  
+    50% {
+      transform: translateY(calc(-50% - 5px)) scale(1.1);
+    }
+}

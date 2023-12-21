@@ -1,0 +1,27 @@
+{
+  "name": "csv-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "CSV",
+    "Viewer"
+  ],
+  "author": "Ankit",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/node": "^3.0.14",
+    "csv-parser": "^3.0.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^8.0.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.0.2",
+    "xlsx": "^0.18.5"
+  }
+}

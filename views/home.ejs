@@ -1,0 +1,83 @@
+<div class="homeContainer">
+    <form action="/uploadFile" id="csvForm" enctype="multipart/form-data" method="POST">
+        <div id="drop-area" class="drop-area">
+            <div class="fileUpload">
+                <label for="csvPath"><img src="/images/cloud-upload.png" alt="upload" /></label>
+                <input type="file" name="csvPath" id="csvPath"
+                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    onchange="displayFileName(this);" hidden />
+            </div>
+            <div id="file-name-display"></div>
+            <div class="dragOver">Release your mouse to drop</div>
+            <div class="instructionsUpper">Drag a CSV file here</div>
+            <div class="instructionsLower">or browse file via the button</div>
+        </div>
+        <button type="submit" class="cssbuttons-io-button">
+            <svg viewBox="0 0 640 512" fill="white" height="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z">
+                </path>
+            </svg>
+            <span>Upload</span>
+        </button>
+    </form>
+    <div id="filesDiv">
+        <div class="tableHeadDiv">
+            <h3>All Files</h3>
+            <div class="input-container">
+                <input type="text" name="fileSearchInput" id="fileSearchInput" class="searchInput" autocomplete="off" placeholder="search...">
+                <span class="searchIcon"> 
+                  <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                </span>
+            </div>
+        </div>
+        <div id="fileContainer">
+            <% if(files){ %>
+                <table id="filesTable">
+                    <thead>
+                        <tr class="trow">
+                            <th id="srNoTh">#</th>
+                            <th id="fileNameTh"><div class="thCol">File Name<ion-icon class="filterCol" name="chevron-expand-outline"></ion-icon></div></th>
+                            <th id="sizeTh"><div class="thCol">Size<ion-icon class="filterCol" name="chevron-expand-outline"></ion-icon></div></th>
+                            <th id="dateTh"><div class="thCol">Date<ion-icon class="filterCol" name="chevron-expand-outline"></ion-icon></div></th>
+                            <th id="actionTh"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let counter=1; %>
+                            <% for(file of files){ %>
+                                <tr class="trow" id="row-<%=file.id%>">
+                                    <td>
+                                        <%= counter %>
+                                    </td>
+                                    <td>
+                                        <%= file.originalname %>
+                                    </td>
+                                    <td>
+                                        <%= ((file.size)/1000).toFixed(2); %> KB
+                                    </td>
+                                    <td>
+                                        <% const date=new Date(file.createdAt); %>
+                                            <div>
+                                                <%= date.toLocaleDateString('en-GB') %>
+                                            </div>
+                                            <div>
+                                                <%= date.toLocaleTimeString('en-US', { hour12: true, hour: 'numeric' ,
+                                                    minute: '2-digit' }).toLowerCase(); %>
+                                            </div>
+                                    </td>
+                                    <td><a href="/viewFile?id=<%= file.id %>" class="previewBtn">
+                                            <i class="fa-regular fa-file-lines"></i>&ensp;Preview File</a>&nbsp;|&nbsp;
+                                        <a href="/deleteFile?id=<%= file.id %>" class="deleteFileBtn">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% counter++; %>
+                                    <% } %>
+                    </tbody>
+                </table>
+                <% } %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+#fileDataDiv{
+    width: 100%;
+}
+
+#fileDataContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#fileDataTable{
+    width: 100%;
+    border-collapse: collapse; 
+    text-align: left;
+    color: #303841;
+}
