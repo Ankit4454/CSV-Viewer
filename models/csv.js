@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
-const CSV_PATH = path.join('/tmp/uploads');
+const CSV_PATH = path.join('/tmp');
 
 const csvSchema = new mongoose.Schema({
     originalname: {
@@ -22,7 +22,7 @@ const csvSchema = new mongoose.Schema({
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '..', CSV_PATH));
+        cb(null, path.join(__dirname, '..' , CSV_PATH));
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
