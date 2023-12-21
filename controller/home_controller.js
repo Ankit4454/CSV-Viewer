@@ -30,14 +30,14 @@ module.exports.uploadFile = function (req, res) {
         }
 
         if (req.file) {
-            let csvPath = path.join(CSV.uploadedCSVPath, req.file.filename);
+            let csvPath = path.join('/tmp', req.file.filename);
             let absolutePath = path.join(__dirname, '..', csvPath);
             let size = req.file.size;
             let originalname = req.file.originalname;
 
-            if (fs.existsSync(absolutePath) && originalname.endsWith('.csv')) {
+            if (fs.existsSync(csvPath) && originalname.endsWith('.csv')) {
                 let rows = [];
-                fs.createReadStream(absolutePath)
+                fs.createReadStream(csvPath)
                     .pipe(csv())
                     .on('data', (row) => {
                         if (!rows.length) {
@@ -62,8 +62,8 @@ module.exports.uploadFile = function (req, res) {
                                 console.log(`Error while processing and uploading file: ${err}`);
                             });
                     });
-            } else if (fs.existsSync(absolutePath) && originalname.endsWith('.xlsx')) {
-                let workbook = xlsx.readFile(absolutePath);
+            } else if (fs.existsSync(csvPath) && originalname.endsWith('.xlsx')) {
+                let workbook = xlsx.readFile(csvPath);
                 let sheet_name_list = workbook.SheetNames;
                 let rows = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]], { header: 1 });
 
@@ -106,7 +106,7 @@ module.exports.viewFile = function(req,res){
 module.exports.deleteFile = function(req,res){
     CSV.findByIdAndDelete(req.query.id).then(function(data){
         if (data && data.csvPath){
-            fs.unlinkSync(path.join(__dirname, '..', data.csvPath));
+            fs.unlinkSync(path.join(data.csvPath));
         }
         if(req.xhr){
             return res.status(200).json({
