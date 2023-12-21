@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
-const CSV_PATH = path.join('/uploads');
+const CSV_PATH = path.join('/tmp/uploads');
 
 const csvSchema = new mongoose.Schema({
     originalname: {
